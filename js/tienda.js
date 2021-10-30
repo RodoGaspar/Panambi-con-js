@@ -26,7 +26,7 @@ console.log (subTotal)
 let promo = prompt("¿Tienes código de descuento?").toLowerCase()
 if (promo == "si") {
     let precioFinal = desc(subTotal)
-    alert("El total a pagar es de $ " + precioFinal.toFixed(2))
+    alert("El total a pagar es de $" + precioFinal.toFixed(2))
 } else {
-    alert("El total a pagar es de $ " + subTotal)
+    alert("El total a pagar es de $" + subTotal)
 }
