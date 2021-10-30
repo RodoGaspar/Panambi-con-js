@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;700&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #3e8f13;
+  background: linear-gradient(to top left, #3e8f13 0%, #b1ff86 100%);
+}
+
+.bg-cabezon {
+  background-image: url(../imagenes/Vincent_van_Gogh_-_Grass_and_butterflies.jpg);
+  background-position: center, bottom;
+  background-size: 100%;
+  background-attachment: fixed;
+  height: 55vh;
+}
+
+.bg-cabezon div a img {
+  height: 40vh;
+  border-radius: 50%;
+  opacity: 95%;
+}
+
+.bg-cabezon ul li {
+  display: inline-block;
+  background-color: #3e8f138f;
+  border: 1px outset #3e8f13;
+  border-radius: 10%;
+  padding: 0.5rem;
+  margin: 0rem 0.2rem;
+  transition: all 1.5s;
+}
+
+nav div div ul li a {
+  text-decoration: none;
+  color: #fffd91 !important;
+  font-size: 3rem;
+  font-family: "Open Sans", sans-serif;
+}
+
+.bg-cabezon ul li:hover {
+  background-color: #892be27f;
+}
+
+.bg-cabezon ul li ul li:hover {
+  background-color: #892be27f;
+}
+
+footer {
+  background-image: url(../imagenes/Vincent_van_Gogh_-_Grass_and_butterflies.jpg);
+  background-position: center, bottom;
+  background-size: 100%;
+  background-attachment: fixed;
+  color: #3e8f13;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+footer div div a img {
+  height: 17rem;
+  border-radius: 50%;
+}
+
+footer .mapita {
+  margin: 1rem 0rem;
+}
+
+footer .redesSociales {
+  background-color: #87ff47;
+  display: inline-block;
+  margin: 2rem 0rem;
+  padding: 1.5rem 1rem;
+}
+
+footer .redesSociales p {
+  font-size: 2rem;
+}
+
+footer .redesSociales ul li {
+  list-style: none;
+}
+
+footer .redesSociales ul li a img {
+  width: 3rem;
+}
+
+footer .redesSociales ul li p {
+  display: inline-block;
+  font-size: 2rem;
+}
+
+.goUp {
+  color: #b1ff86;
+  background-color: #3e8f13;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.5rem;
+  text-decoration: none;
+  margin: 5rem 0rem;
+}
+
+.credit {
+  color: #8F6B8f;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.5rem;
+  text-align: center;
+  transition: 1s;
+}
+
+.credit:hover {
+  color: #09daff;
+}
+
+/*Productos*/
+
+h1 {
+    color: #b1ff86;
+    background: radial-gradient(circle, #3e8f13 0%, #b1ff86 100%);
+    font-family: "Dancing Script", cursive;
+    text-align: center;
+}
+
+.productos__titl {
+    font-family: "Open Sans", sans-serif;
+  }
+  
+  .productos__subtitl {
+    font-family: "Open Sans", sans-serif;
+    color: #fffd91;
+    background-color: #8F6B8f;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 3rem 0rem;
+  }
+  
+  .productos__descrip {
+    color: #fffd91;
+    background-color: #8F6B8f;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.5rem;
+  }
+  
+  .productos__card {
+    border: 0.1rem solid #b1ff86;
+    background-color: #8F6B8f;
+    background: linear-gradient(to top #6d5881 0%, #8F6B8f 100%);
+  }
+  
+  .productos__card .productos__subtitl--card {
+    font-family: "Open Sans", sans-serif;
+    text-align: center;
+    color: #fffd91;
+    background-color: #8F6B8f;
+    text-align: left;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .productos__card .productos__descrip--card {
+    color: #fffd91;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.5rem;
+  }
+  
+  .productos__subtitl--medidas {
+    text-align: center;
+    color: #fffd91;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .accordion__titl {
+    font-family: "Open Sans", sans-serif;
+    color: #fffd91;
+    background-color: #6d5881;
+    background: linear-gradient(to left, #6d5881 0%, #8F6B8f 100%);
+    border: 0.1rem solid #8F6B8f;
+  }
+  
+  .accordion__titl button {
+    font-family: "Open Sans", sans-serif;
+    color: #fffd91;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .accordion__table {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.5rem;
+  }
+  
+  .productos__otros {
+    color: #b1ff86;
+    background-color: #8F6B8f;
+    font-family: "Open Sans", sans-serif;
+    font-size: 2rem;
+    line-height: 1.2;
+    margin: 2rem 0rem;
+  }
+  
+  .productos__contacto--style {
+    text-decoration: none;
+    color: #b1ff86;
+  }
+  
+  .productos__card--plantas {
+    border: 1px solid #b1ff86;
+    background-color: #3E8F13;
+    background: linear-gradient(to top, #3e8f13 0%, #87ff47 100%);
+    margin-bottom: 2rem;
+    padding: 2rem;
+  }
+  
+  .productos__card--plantas .productos__subtitl--card {
+    font-family: "Open Sans", sans-serif;
+    text-align: center;
+    color: #fffd91;
+    background-color: #8F6B8f;
+    text-align: left;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .productos__card--plantas .productos__descrip--card {
+    color: #fffd91;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.5rem;
+  }
+  
+  .productos__card--plantas .card__boton {
+    color: #fffd91;
+    background-color: #8F6B8f;
+    font-size: 1.3rem;
+  }
