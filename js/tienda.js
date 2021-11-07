@@ -23,53 +23,59 @@ class producto {
         this.vendido = true;
     };
 };
-const producto1 = new producto (prompt("Por favor elige el tipo de maceta que deseas adquirir. Por el momento contamos con tamaños S, M, L y XL").toUpperCase());
-producto1.precioLista();
-console.log(producto1.nombre);
-console.log(producto1.precio);
-producto1.sumarIva();
-console.log(producto1.precio);
-
-
-
-/*
-var sizePot;
+let tamano;
 function size() {
-    var sizePot = prompt("Por favor elige el tipo de maceta que deseas adquirir. Por el momento contamos con tamaños S, M, L y XL").toUpperCase();
-    while (sizePot != "S" && sizePot != "M" && sizePot != "L" && sizePot != "XL") {
-    sizePot = prompt("Por favor, elige en uno de los tamaños disponibles: S, M, L o XL");
-    return cosole.log (sizePot)
+    tamano = prompt("Por favor elige el tipo de maceta que deseas adquirir. Por el momento contamos con tamaños S, M, L y XL").toUpperCase();
+    while (tamano != "S" && tamano != "M" && tamano != "L" && tamano != "XL") {
+        tamano = prompt("Por favor, elige en uno de los tamaños disponibles: S, M, L o XL").toUpperCase();
     
-}
-}
-/*function precioLista() {
-    if (sizePot == "S") {
-        precio = 450
-    } else if (sizePot == "M") {
-        precio = 650
-    } else if (sizePot == "L") {
-        precio = 800
-    } else {
-        precio = 1000
-    } 
-}
-size()
-//precioLista()
-console.log("El tamaño es " + sizePot)
-//console.log(precio)*/
+};
+return tamano
+};
 
-/*console.log(maceta)
-precioLista(maceta)
-console.log(precio)
-const iva = x => x * 0.21;
-const suma = (a, b) => a + b;
-const desc = (a) => a - (a * 0.15)
-let subTotal = suma(precio, iva(precio))
-console.log (subTotal)
-let promo = prompt("¿Tienes código de descuento?").toLowerCase()
-if (promo == "si") {
-    let precioFinal = desc(subTotal)
-    alert("El total a pagar es de $" + precioFinal.toFixed(2))
+
+const pedido = [];
+//Producto 1
+const producto1 = new producto (nombre = size());
+producto1.precioLista();
+producto1.sumarIva();
+pedido.push (producto1);
+//Producto 2
+const producto2 = new producto (nombre = size());
+producto2.precioLista();
+producto2.sumarIva()
+pedido.push (producto2);
+//Producto 3
+const producto3 = new producto (nombre = size());
+producto3.precioLista();
+producto3.sumarIva();
+pedido.push (producto3);
+//Producto 4
+const producto4 = new producto (nombre = size());
+producto4.precioLista();
+producto4.sumarIva(); 
+pedido.push (producto4);
+console.log(producto1.nombre + producto2.nombre + producto3.nombre + producto4.nombre);
+pedido.sort(function(a, b) {
+    if (a.precio > b.bprecio){
+        return 1
+    }
+    if (a.precio < b.precio) {
+        return -1
+    }
+    return 0
+})
+console.log(pedido);
+for (const producto of pedido) {
+    alert("Elegiste los siguientes items: maceta " + producto.nombre + " a $" + producto.precio)
+};
+var venta = prompt("¿Deseas continuar con la compra?").toLowerCase();
+if (venta == "si") { 
+    for (sale of pedido) {
+        sale.vender();
+    }
+    console.log(pedido)
+    alert("¡Gracias por tu compra")
 } else {
-    alert("El total a pagar es de $" + subTotal)
-}*/
+    alert("Esperamos tu regreso")
+};
