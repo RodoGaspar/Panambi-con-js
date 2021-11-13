@@ -212,32 +212,3 @@ h1 {
     color: #b1ff86;
   }
   
-  .productos__card--plantas {
-    border: 1px solid #b1ff86;
-    background-color: #3E8F13;
-    background: linear-gradient(to top, #3e8f13 0%, #87ff47 100%);
-    margin-bottom: 2rem;
-    padding: 2rem;
-  }
-  
-  .productos__card--plantas .productos__subtitl--card {
-    font-family: "Open Sans", sans-serif;
-    text-align: center;
-    color: #fffd91;
-    background-color: #8F6B8f;
-    text-align: left;
-    font-size: 2rem;
-    font-weight: bold;
-  }
-  
-  .productos__card--plantas .productos__descrip--card {
-    color: #fffd91;
-    font-family: "Open Sans", sans-serif;
-    font-size: 1.5rem;
-  }
-  
-  .productos__card--plantas .card__boton {
-    color: #fffd91;
-    background-color: #8F6B8f;
-    font-size: 1.3rem;
-  }

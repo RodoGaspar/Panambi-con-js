@@ -33,7 +33,6 @@ function size() {
 return tamano
 };
 
-
 const pedido = [];
 //Producto 1
 const producto1 = new producto (nombre = size());
@@ -66,8 +65,13 @@ pedido.sort(function(a, b) {
     return 0
 })
 console.log(pedido);
+let carrito = document.getElementById("carrito");
+console.log(carrito)
 for (const producto of pedido) {
-    alert("Elegiste los siguientes items: maceta " + producto.nombre + " a $" + producto.precio)
+    //alert("Elegiste los siguientes items: maceta " + producto.nombre + " a $" + producto.precio)
+    let compra = document.createElement("div")
+    compra.innerHTML = `<h4> Producto: ${producto.nombre}</h4> $${producto.precio}`
+    carrito.appendChild(compra)
 };
 var venta = prompt("¿Deseas continuar con la compra?").toLowerCase();
 if (venta == "si") { 
