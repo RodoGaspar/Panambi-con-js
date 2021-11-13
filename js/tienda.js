@@ -1,20 +1,11 @@
-alert("¡Bienvenido a la tienda de Panambí!")
+//Class para armar productos
 class producto {
-    constructor(nombre, precio) {
+    constructor(id, nombre, precio, stock) {
+        this.id = id;
         this.nombre = nombre;
         this.precio = parseFloat(precio);
+        this.stock = stock;
         this.vendido = false;
-    };
-    precioLista() {
-        if (this.nombre == "S") {
-            this.precio = 450
-        } else if (this.nombre == "M") {
-            this.precio = 650
-        } else if (this.nombre == "L") {
-            this.precio = 800
-        } else {
-            this.precio = 1000
-        } 
     };
     sumarIva() {
         this.precio = this.precio * 1.21;
@@ -22,57 +13,101 @@ class producto {
     vender() {
         this.vendido = true;
     };
+    restaStock() {
+        this.stock -= 1;
+    }
 };
-let tamano;
-function size() {
-    tamano = prompt("Por favor elige el tipo de maceta que deseas adquirir. Por el momento contamos con tamaños S, M, L y XL").toUpperCase();
-    while (tamano != "S" && tamano != "M" && tamano != "L" && tamano != "XL") {
-        tamano = prompt("Por favor, elige en uno de los tamaños disponibles: S, M, L o XL").toUpperCase();
-    
-};
-return tamano
+//Productos definidos y sumados a un array
+const producto1 = new producto (1, "S", 450, 70);
+const producto2 = new producto (2, "M", 650, 60);
+const producto3 = new producto (3, "L", 800, 50);
+const producto4 = new producto (4, "XL", 1000, 40);
+
+let arrayProductos = [producto1, producto2, producto3, producto4]
+
+console.table(arrayProductos)
+//Acá comienza el carrito
+let pedido = [];
+let productosOfrecidos = "En este momento contamos con: ";
+
+function sumarPedido() {
+    for (item of arrayProductos){
+        item.sumarIva();
+        productosOfrecidos += `\n ${item.id} - ${item.nombre} a $${item.precio} cada uno.`
+    }
+
+    productosOfrecidos += `\n Ingresá el numero de Item que querés sumar a tu pedido. Para salir ingresa 0`;
+
+    let accionUsuario = parseInt(prompt(productosOfrecidos))
+
+    while (isNaN(accionUsuario)) {
+        alert("Por favor, ingresá solo números")
+        accionUsuario = parseInt(prompt(productosOfrecidos))
+    };
+    while (accionUsuario != 0) {
+        switch (accionUsuario) {
+            case 1:
+                pedido.push(arrayProductos[0])
+                alert(`Agregamos a tu pedido un maceta ${arrayProductos[0].nombre}`)
+                arrayProductos[0].restaStock()
+                break;
+            case 2:
+                pedido.push(arrayProductos[1])
+                alert(`Agregamos a tu pedido un maceta ${arrayProductos[1].nombre}`)
+                arrayProductos[1].restaStock()
+                break;
+            case 3:
+                pedido.push(arrayProductos[2])
+                alert(`Agregamos a tu pedido un maceta ${arrayProductos[2].nombre}`)
+                arrayProductos[2].restaStock()
+                break;
+            case 4:
+                pedido.push(arrayProductos[3])
+                alert(`Agregamos a tu pedido un maceta ${arrayProductos[3].nombre}`)
+                arrayProductos[3].restaStock()
+                break;
+        
+            default:
+                alert("No contamos con el producto elegido")
+                break;
+        }
+        accionUsuario = parseInt(prompt(productosOfrecidos))
+    }
 };
 
-const pedido = [];
-//Producto 1
-const producto1 = new producto (nombre = size());
-producto1.precioLista();
-producto1.sumarIva();
-pedido.push (producto1);
-//Producto 2
-const producto2 = new producto (nombre = size());
-producto2.precioLista();
-producto2.sumarIva()
-pedido.push (producto2);
-//Producto 3
-const producto3 = new producto (nombre = size());
-producto3.precioLista();
-producto3.sumarIva();
-pedido.push (producto3);
-//Producto 4
-const producto4 = new producto (nombre = size());
-producto4.precioLista();
-producto4.sumarIva(); 
-pedido.push (producto4);
-console.log(producto1.nombre + producto2.nombre + producto3.nombre + producto4.nombre);
-pedido.sort(function(a, b) {
-    if (a.precio > b.bprecio){
-        return 1
-    }
-    if (a.precio < b.precio) {
-        return -1
-    }
-    return 0
-})
-console.log(pedido);
+let productosPedido = "Elegiste: "
+let precioPedido = 0 
 let carrito = document.getElementById("carrito");
-console.log(carrito)
-for (const producto of pedido) {
-    //alert("Elegiste los siguientes items: maceta " + producto.nombre + " a $" + producto.precio)
-    let compra = document.createElement("div")
-    compra.innerHTML = `<h4> Producto: ${producto.nombre}</h4> $${producto.precio}`
-    carrito.appendChild(compra)
-};
+
+function mostrarPedido() {
+    pedido.sort(function(a, b) {
+        if (a.precio > b.bprecio){
+            return 1
+        }
+        if (a.precio < b.precio) {
+            return -1
+        }
+        return 0
+    })
+    for (const producto of pedido) {
+        let compra = document.createElement("div")
+        compra.innerHTML = `<h3> Maceta: ${producto.nombre}</h3> <h4>$${producto.precio}</h4>`
+        carrito.appendChild(compra)
+        precioPedido += producto.precio;
+    }; 
+    let compraTotal =document.createElement("div")
+    compraTotal.innerHTML = `<h3> El Total de tu pedido es de: ${precioPedido}`
+    carrito.appendChild(compraTotal)
+}
+
+
+alert("¡Bienvenido a la tienda de Panambí!")
+sumarPedido()
+console.log("Cerramos tu pedido")
+console.table(pedido);
+mostrarPedido()
+
+//Acá se confirma la venta (proximamente con un evento)
 var venta = prompt("¿Deseas continuar con la compra?").toLowerCase();
 if (venta == "si") { 
     for (sale of pedido) {
