@@ -70,9 +70,21 @@ function enviarConsulta() {
     var nombre = document.getElementById("nombre_cliente").value;
     var email = document.getElementById("email_cliente").value;
     
-    localStorage.setItem("datos_formulario") = JSON.stringify([producto_elegido, precio_elegido, nombre, email,]);
-    document.getElementById("answer").innerHTML = "<p class= 'text-white bg-success> Recibimos tu consulta! ;)</p>";
+    localStorage.setItem("datos_formulario", JSON.stringify([producto_elegido, precio_elegido, nombre, email]));
+    var respuesta = "<p class= 'text-white bg-success p-3'> Recibimos tu consulta! ;)</p>"
+    document.getElementById("respuesta").innerHTML = respuesta;
 }
 
-var enviar_consulta = document.getElementById("enviar_datos");
-enviar_consulta.addEventListener("click", enviarConsulta());
+var enviar_datos = document.getElementById("enviar_datos");
+enviar_datos.addEventListener("click", enviarConsulta);
+//console.log(datos_formulario)
+
+function cargarInfo() {
+    var datos = JSON.parse(localStorage.getItem("datos_formulario"));
+    document.getElementById("producto_seleccionado").value = datos[0];
+    document.getElementById("precio_seleccionado").value = datos[1];
+    document.getElementById("nombre_cliente").value = datos[2];
+    document.getElementById("email_cliente").value = datos[3];
+}
+
+cargarInfo();
