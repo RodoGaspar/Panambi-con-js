@@ -31,126 +31,48 @@ var i = 1
 for (let producto of arrayProductos) {
     producto.sumarIva()
     tarjetas += "<div class='card productos__card col-lg-3 col-md-5 col-sm-12'>";
-    tarjetas += "<img src='imagenes/"+ producto.imagen + "' class='card-img-top' alt='" + producto.nombre +"'>";
+    tarjetas += "<img id='prodImg"+ i +"' src='imagenes/"+ producto.imagen + "' class='card-img-top' alt='" + producto.nombre +"' onclick=infoProd('prodNombre"+ i +"')>";
     tarjetas += "<div class='card-body'>";
-    tarjetas += "<h3 class= 'card-title productos__subtitl--card'>Maceta " + producto.nombre + "</h3>";
+    tarjetas += "<h3 id='prodNombre"+ i +"' class= 'card-title productos__subtitl--card'>Maceta " + producto.nombre + "</h3>";
     tarjetas += "<col><p class='card-text productos__descrip--card'>" + producto.descripcion +"</p></col>";
-    tarjetas += "<col class= 'text-end'><strong class='productos__descrip--card'>Precio: $" + producto.precio + "</strong></col>";
-    tarjetas += "<form>";
-    tarjetas += "<select class='form-select' id='cantidad_maceta"+ i +"' aria-label='Default select example'>";
-    tarjetas += "<option selected>Selecciona la cantidad deseada</option>";
-    tarjetas += "<option value='1'>Uno</option>";
-    tarjetas += "<option value='2'>Dos</option>";
-    tarjetas += "<option value='3'>Tres</option>";
-    tarjetas += "<option value='4'>Cuatro</option>";
-    tarjetas += "<option value='5'>Cinco</option>";
-    tarjetas += "<option value='6'>Seis</option>";
-    tarjetas += "<option value='7'>Siete</option>";
-    tarjetas += "<option value='8'>Ocho</option>";
-    tarjetas += "<option value='9'>Nueve</option>";
-    tarjetas += "<option value='10'>Diez</option>";
-    tarjetas += "</select>";
-    tarjetas += "<button id='agregar"+ i +"' class='btn btn-primary btn-lg' type='button'>Sumar al pedido</button>";
-    tarjetas += "</form>";
+    tarjetas += "<col class= 'text-end'><strong id='prodPrecio"+ i +"' class='productos__descrip--card'>Precio: $" + producto.precio + "</strong></col>";
     tarjetas += "</div>";
     tarjetas += "</div>";
     i++;
+    var prodImagen = document.getElementById("prodNombre"+ i)
 }
 
 var tarj_prod = document.getElementById("muestraMacetas");
 tarj_prod.innerHTML = tarjetas;
 
-
-//Acá comienza el carrito
-let pedido = [];
-let productosOfrecidos = "En este momento contamos con: ";
-
-/*
-function sumarPedido() {
-    for (item of arrayProductos){
-        item.sumarIva();
-        productosOfrecidos += `\n ${item.id} - ${item.nombre} a $${item.precio} cada uno.`
+function infoProd(producto) {
+    var producto_elegido = document.getElementById("producto_seleccionado");
+    var precio_elegido = document.getElementById("precio_seleccionado");
+    console.log( "es" + producto)
+    if (producto == "prodNombre1") {
+        producto_elegido.value  = arrayProductos[0].nombre;
+        precio_elegido.value = arrayProductos[0].precio;
+    } else if (producto == "prodNombre2") {
+        producto_elegido.value = arrayProductos[1].nombre;
+        precio_elegido.value = arrayProductos[1].precio;
+    } else if (producto == "prodNombre3") {
+        producto_elegido.value = arrayProductos[2].nombre;
+        precio_elegido.value = arrayProductos[2].precio;
+    } else if (producto == "prodNombre4") {
+        producto_elegido.value = arrayProductos[3].nombre;
+        precio_elegido.value = arrayProductos[3].precio;
     }
-
-    productosOfrecidos += `\n Ingresá el numero de Item que querés sumar a tu pedido. Para salir ingresa 0`;
-
-    let accionUsuario = parseInt(prompt(productosOfrecidos))
-
-    while (isNaN(accionUsuario)) {
-        alert("Por favor, ingresá solo números")
-        accionUsuario = parseInt(prompt(productosOfrecidos))
-    };
-    while (accionUsuario != 0) {
-        switch (accionUsuario) {
-            case 1:
-                pedido.push(arrayProductos[0])
-                alert(`Agregamos a tu pedido un maceta ${arrayProductos[0].nombre}`)
-                arrayProductos[0].restaStock()
-                break;
-            case 2:
-                pedido.push(arrayProductos[1])
-                alert(`Agregamos a tu pedido un maceta ${arrayProductos[1].nombre}`)
-                arrayProductos[1].restaStock()
-                break;
-            case 3:
-                pedido.push(arrayProductos[2])
-                alert(`Agregamos a tu pedido un maceta ${arrayProductos[2].nombre}`)
-                arrayProductos[2].restaStock()
-                break;
-            case 4:
-                pedido.push(arrayProductos[3])
-                alert(`Agregamos a tu pedido un maceta ${arrayProductos[3].nombre}`)
-                arrayProductos[3].restaStock()
-                break;
-        
-            default:
-                alert("No contamos con el producto elegido")
-                break;
-        }
-        accionUsuario = parseInt(prompt(productosOfrecidos))
-    }
-};
-
-let productosPedido = "Elegiste: "
-let precioPedido = 0 
-let carrito = document.getElementById("carrito");
-
-function mostrarPedido() {
-    pedido.sort(function(a, b) {
-        if (a.precio > b.bprecio){
-            return 1
-        }
-        if (a.precio < b.precio) {
-            return -1
-        }
-        return 0
-    })
-    for (const producto of pedido) {
-        let compra = document.createElement("div")
-        compra.innerHTML = `<h3> Maceta: ${producto.nombre}</h3> <h4>$${producto.precio}</h3>`
-        carrito.appendChild(compra)
-        precioPedido += producto.precio;
-    }; 
-    let compraTotal =document.createElement("div")
-    compraTotal.innerHTML = `<h3> El Total de tu pedido es de: ${precioPedido}</h3>`
-    carrito.appendChild(compraTotal)
 }
-*/
-/*
-alert("¡Bienvenido a la tienda de Panambí!")
-sumarPedido()
-console.log("Cerramos tu pedido")
-console.table(pedido);
-mostrarPedido()
 
-//Acá se confirma la venta (proximamente con un evento)
-var venta = prompt("¿Deseas continuar con la compra?").toLowerCase();
-if (venta == "si") { 
-    for (sale of pedido) {
-        sale.vender();
-    }
-    console.log(pedido)
-    alert("¡Gracias por tu compra")
-} else {
-    alert("Esperamos tu regreso")
-};*/
+function enviarConsulta() {
+    var producto_elegido = document.getElementById("producto_seleccionado").value;
+    var precio_elegido = document.getElementById("precio_seleccionado").value;
+    var nombre = document.getElementById("nombre_cliente").value;
+    var email = document.getElementById("email_cliente").value;
+    
+    localStorage.setItem("datos_formulario") = JSON.stringify([producto_elegido, precio_elegido, nombre, email,]);
+    document.getElementById("answer").innerHTML = "<p class= 'text-white bg-success> Recibimos tu consulta! ;)</p>";
+}
+
+var enviar_consulta = document.getElementById("enviar_datos");
+enviar_consulta.addEventListener("click", enviarConsulta());

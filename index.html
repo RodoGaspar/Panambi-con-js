@@ -56,112 +56,33 @@
       <div class="row" id="muestraMacetas">
 
       </div>
-      <h3 class="productos__subtitl--medidas">¿Querés saber las medidas?</h3>
-      <div class="accordion accordion-flush">
-        <div class="accordion-item bg-transparent">
-          <h4 class="accordion-header accordion__titl" id="flush-headingOne">
-            <button class="accordion-button collapsed bg-transparent" type="button" data-bs-toggle="collapse"
-              data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">Alto</button>
-          </h4>
-          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-            data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">
-              <table class="table accordion__table">
-                <thead>
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col">S</th>
-                    <th scope="col">M</th>
-                    <th scope="col">L</th>
-                    <th scope="col">XL</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">Alto</th>
-                    <td>100 mm.</td>
-                    <td>115 mm.</td>
-                    <td>140 mm.</td>
-                    <td>159 mm.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item bg-transparent">
-          <h4 class="accordion-header accordion__titl" id="flush-headingTwo">
-            <button class="accordion-button collapsed bg-transparent" type="button" data-bs-toggle="collapse"
-              data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">Ancho Base /
-              Boca
-            </button>
-          </h4>
-          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
-            data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body accordion__table">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col">N°10</th>
-                    <th scope="col">N°12</th>
-                    <th scope="col">N°14</th>
-                    <th scope="col">N°16</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">Ancho Base / Boca</th>
-                    <td>101 mm. / 59 mm.</td>
-                    <td>124 mm. / 71 mm.</td>
-                    <td>145 mm. / 83 mm.</td>
-                    <td>166 mm. / 95 mm.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item bg-transparent">
-          <h4 class="accordion-header accordion__titl" id="flush-headingThree">
-            <button class="accordion-button collapsed bg-transparent" type="button" data-bs-toggle="collapse"
-              data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree"> Capacidad
-            </button>
-          </h4>
-          <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
-            data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body accordion__table">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col">N°10</th>
-                    <th scope="col">N°12</th>
-                    <th scope="col">N°14</th>
-                    <th scope="col">N°16</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">Capacidad</th>
-                    <td>0,53 dm3</td>
-                    <td>0,6 dm3</td>
-                    <td>1 dm3</td>
-                    <td>1,5 dm3</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <p class="productos__otros col-lg-12 col-md-12 col-sm-10">Contamos con otras medidas que hacemos a pedido, podés contactarte con nosotros haciendo ingresando <a href="" class="productos__contacto--style">aquí</a> o a través de nuestras <a href="#redes" class="productos__contacto--style">redes sociales</a></p>
       <div class="col-12">
-        <h2>Tus Productos:</h2>
-        <div id= "carrito">
-        </div>
+        <h2>Envianos tu consulta:</h2>
+      <div class="row">
+        <form>
+          <div class="mb-3">
+            <label for="producto_seleccionado" class="form-label">Maceta</label>
+            <input type="text" class="form-control" id="producto_seleccionado">
+          </div>
+          <div class="mb-3">
+            <label for="precio_seleccionado" class="form-label">Precio</label>
+            <input type="text" class="form-control" id="precio_seleccionado">
+          </div>
+          <div class="mb-3">
+            <label for="nombre_cliente" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre_cliente">
+          </div>
+          <div class="mb-3">
+            <label for="email_cliente" class="form-label">Email</label>
+            <input type="text" class="form-control" id="email_cliente">
+          </div>
+          <button id="enviar_datos" type="button" class="btn btn-primary">Enviar</button>
+        </form>
+      </div>
+      <div id="answer">
 
       </div>
+      
 
     </div>
   </section>
