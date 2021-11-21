@@ -178,12 +178,18 @@ h1 {
     margin-top: 10px;
   }
   
-  .accordion__titl {
+  .formulario {
     font-family: "Open Sans", sans-serif;
     color: #fffd91;
     background-color: #6d5881;
     background: linear-gradient(to left, #6d5881 0%, #8F6B8f 100%);
     border: 0.1rem solid #8F6B8f;
+    font-size: 1.5rem;
+  }
+  
+  .formulario div input {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.5rem;
   }
   
   

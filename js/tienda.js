@@ -23,7 +23,7 @@ const producto3 = new producto (3, "L", "soln14.jpg", "Tamaño recomiendado para
 const producto4 = new producto (4, "XL", "zorro_boreal.jpg", "Perfecta para plantas medianas o grandes en crecimiento, dependiendo del desarrollo de las mismas puede transplantarse a tamaños más grandes o pasarse a tierra.", 1000);
 
 let arrayProductos = [producto1, producto2, producto3, producto4]
-
+localStorage.setItem("productos_ofrecidos,", JSON.stringify(arrayProductos));
 console.table(arrayProductos)
 //Esta sección arma el html de los productos
 var tarjetas = "";
@@ -77,29 +77,30 @@ class consulta {
 var consultas = [];
 
 function enviarConsulta() {
+    // Se levantan los valores de la consulta
     var producto_elegido = document.getElementById("producto_seleccionado").value;
     var precio_elegido = document.getElementById("precio_seleccionado").value;
     var nombre = document.getElementById("nombre_cliente").value;
     var email = document.getElementById("email_cliente").value;
-
+    // Se comprueba que los campos estén completos
     if (producto_elegido == "") {
-        document.getElementById("respuesta").innerHTML = "<p class= bg-danger p-3 m-3> ¡Hey, no elegiste ningún producto!</p>";
+        document.getElementById("respuesta").innerHTML = "<p class= 'bg-danger p-3 m-3 fs-5'> ¡Hey, no elegiste ningún producto!</p>";
         return false;
     }
     if ((precio_elegido == "") || (parseFloat(precio_elegido) <= 100)) {
-        document.getElementById("respuesta").innerHTML = "<p class= bg-danger p-3 m-3> ¡Hey, ese no es el precio correcto!</p>";
+        document.getElementById("respuesta").innerHTML = "<p class= 'bg-danger p-3 m-3 fs-5'> ¡Hey, ese no es el precio correcto!</p>";
         return false;
     }
     if ((nombre == "") || (nombre.length < 3)) {
-        document.getElementById("respuesta").innerHTML = "<p class= bg-danger p-3 m-3> ¡Hey, por favor ingresa tu nombre!</p>";
+        document.getElementById("respuesta").innerHTML = "<p class= 'bg-danger p-3 m-3 fs-5'> ¡Hey, por favor ingresa tu nombre!</p>";
         return false;
     }
     if ((email == "") || (!email.includes("@"))) {
-        document.getElementById("respuesta").innerHTML = "<p class= bg-danger p-3 m-3> ¡Hey, por favor ingresa tu mail!</p>";
+        document.getElementById("respuesta").innerHTML = "<p class= 'bg-danger p-3 m-3 fs-5'> ¡Hey, por favor ingresa tu mail!</p>";
         return false;
     }
 
-
+    // Se crea un objeto con los datos de la consulta, se pushea a un array y se guarda en local storage
     const nuconsulta = new consulta (nombre, email, producto_elegido, precio_elegido);
     console.log(nuconsulta);
     consultas.push(nuconsulta);
@@ -112,7 +113,7 @@ function enviarConsulta() {
 var enviar_datos = document.getElementById("enviar_datos");
 enviar_datos.addEventListener("click", enviarConsulta);
 
-
+// Se carga la info de la última consulta
 function cargarInfo() {
     var datos = JSON.parse(localStorage.getItem("datos_formulario"));
     var ultConsul = datos.at(-1);
@@ -121,7 +122,26 @@ function cargarInfo() {
     document.getElementById("precio_seleccionado").value = ultConsul.precioElegido;
     document.getElementById("nombre_cliente").value = ultConsul.nombre;
     document.getElementById("email_cliente").value = ultConsul.email;
+    document.getElementById("respuesta").innerHTML = "<p class= 'bg-info p-3 m-3 fs-5'> ¡Se cargó la última consulta!</p>";
 }
 
 var cargar_datos = document.getElementById("cargar_datos");
 cargar_datos.addEventListener("click", cargarInfo);
+
+function borrarDatos() {
+    document.getElementById("producto_seleccionado").value = " ";
+    document.getElementById("precio_seleccionado").value = " ";
+    document.getElementById("nombre_cliente").value = " ";
+    document.getElementById("email_cliente").value = " ";
+    localStorage.clear();
+    document.getElementById("respuesta").innerHTML = "<p class= 'bg-warning p-3 m-3 fs-5'> ¡Se borraron todos los datos!</p>";
+}
+
+var borrar_datos = document.getElementById("borrar_datos");
+borrar_datos.addEventListener("click", borrarDatos);
+
+for (let i = 0; i < localStorage.length; i++) {
+    let clave = localStorage.key(i);
+    console.log("Clave: "+ clave);
+    console.log("Valor: "+ localStorage.getItem(clave));
+};
