@@ -15,6 +15,7 @@ class producto {
         this.vendido = true;
     };
 };
+
 //Productos definidos y sumados a un array
 const producto1 = new producto (1, "S", "Lfante_Lobelia.jpg","Es nuestro formato mas pequeño, ideal para germinar, plantas chicas o plántulas.", 450);
 const producto2 = new producto (2, "M", "MacetaN12Gatitos.jpg", "Este tamaño se recomienda para plantas pequeñas a medianas pensando siempre en hacer un transplante en la siguiente estación o cuando la planta lo requiera.", 650);
@@ -24,10 +25,9 @@ const producto4 = new producto (4, "XL", "zorro_boreal.jpg", "Perfecta para plan
 let arrayProductos = [producto1, producto2, producto3, producto4]
 
 console.table(arrayProductos)
-
+//Esta sección arma el html de los productos
 var tarjetas = "";
-var i = 1
-
+var i = 1;
 for (let producto of arrayProductos) {
     producto.sumarIva()
     tarjetas += "<div class='card productos__card col-lg-3 col-md-5 col-sm-12'>";
@@ -64,27 +64,64 @@ function infoProd(producto) {
     }
 }
 
+// Class para armar consulta
+class consulta {
+    constructor (nombre, email, prodElegido, precioElegido) {
+        this.nombre = nombre;
+        this.email = email;
+        this.prodElegido = prodElegido;
+        this.precioElegido = precioElegido;
+    }
+}
+// Array de Consultas
+var consultas = [];
+
 function enviarConsulta() {
     var producto_elegido = document.getElementById("producto_seleccionado").value;
     var precio_elegido = document.getElementById("precio_seleccionado").value;
     var nombre = document.getElementById("nombre_cliente").value;
     var email = document.getElementById("email_cliente").value;
-    
-    localStorage.setItem("datos_formulario", JSON.stringify([producto_elegido, precio_elegido, nombre, email]));
-    var respuesta = "<p class= 'text-white bg-success p-3'> Recibimos tu consulta! ;)</p>"
+
+    if (producto_elegido == "") {
+        document.getElementById("respuesta").innerHTML = "<p class= bg-danger p-3 m-3> ¡Hey, no elegiste ningún producto!</p>";
+        return false;
+    }
+    if ((precio_elegido == "") || (parseFloat(precio_elegido) <= 100)) {
+        document.getElementById("respuesta").innerHTML = "<p class= bg-danger p-3 m-3> ¡Hey, ese no es el precio correcto!</p>";
+        return false;
+    }
+    if ((nombre == "") || (nombre.length < 3)) {
+        document.getElementById("respuesta").innerHTML = "<p class= bg-danger p-3 m-3> ¡Hey, por favor ingresa tu nombre!</p>";
+        return false;
+    }
+    if ((email == "") || (!email.includes("@"))) {
+        document.getElementById("respuesta").innerHTML = "<p class= bg-danger p-3 m-3> ¡Hey, por favor ingresa tu mail!</p>";
+        return false;
+    }
+
+
+    const nuconsulta = new consulta (nombre, email, producto_elegido, precio_elegido);
+    console.log(nuconsulta);
+    consultas.push(nuconsulta);
+    console.log(consultas)
+    localStorage.setItem("datos_formulario", JSON.stringify(consultas));
+    var respuesta = "<p class= 'text-white bg-success p-3 m-3'> Recibimos tu consulta! ;)</p>"
     document.getElementById("respuesta").innerHTML = respuesta;
 }
 
 var enviar_datos = document.getElementById("enviar_datos");
 enviar_datos.addEventListener("click", enviarConsulta);
-//console.log(datos_formulario)
+
 
 function cargarInfo() {
     var datos = JSON.parse(localStorage.getItem("datos_formulario"));
-    document.getElementById("producto_seleccionado").value = datos[0];
-    document.getElementById("precio_seleccionado").value = datos[1];
-    document.getElementById("nombre_cliente").value = datos[2];
-    document.getElementById("email_cliente").value = datos[3];
+    var ultConsul = datos.at(-1);
+    console.log(ultConsul);
+    document.getElementById("producto_seleccionado").value = ultConsul.prodElegido;
+    document.getElementById("precio_seleccionado").value = ultConsul.precioElegido;
+    document.getElementById("nombre_cliente").value = ultConsul.nombre;
+    document.getElementById("email_cliente").value = ultConsul.email;
 }
 
-cargarInfo();
+var cargar_datos = document.getElementById("cargar_datos");
+cargar_datos.addEventListener("click", cargarInfo);

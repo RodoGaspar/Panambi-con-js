@@ -186,29 +186,4 @@ h1 {
     border: 0.1rem solid #8F6B8f;
   }
   
-  .accordion__titl button {
-    font-family: "Open Sans", sans-serif;
-    color: #fffd91;
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  .accordion__table {
-    font-family: "Open Sans", sans-serif;
-    font-size: 1.5rem;
-  }
-  
-  .productos__otros {
-    color: #b1ff86;
-    background-color: #8F6B8f;
-    font-family: "Open Sans", sans-serif;
-    font-size: 2rem;
-    line-height: 1.2;
-    margin: 2rem 0rem;
-  }
-  
-  .productos__contacto--style {
-    text-decoration: none;
-    color: #b1ff86;
-  }
   
