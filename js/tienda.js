@@ -39,28 +39,25 @@ for (let producto of arrayProductos) {
     tarjetas += "</div>";
     tarjetas += "</div>";
     i++;
-    var prodImagen = document.getElementById("prodNombre"+ i)
 }
 
-var tarj_prod = document.getElementById("muestraMacetas");
-tarj_prod.innerHTML = tarjetas;
+$("#muestraMacetas").append(tarjetas);
+
 
 function infoProd(producto) {
-    var producto_elegido = document.getElementById("producto_seleccionado");
-    var precio_elegido = document.getElementById("precio_seleccionado");
     console.log( "es" + producto)
     if (producto == "prodNombre1") {
-        producto_elegido.value  = arrayProductos[0].nombre;
-        precio_elegido.value = arrayProductos[0].precio;
+        $("#producto_seleccionado").val(arrayProductos[0].nombre);
+        $("#precio_seleccionado").val(arrayProductos[0].precio);
     } else if (producto == "prodNombre2") {
-        producto_elegido.value = arrayProductos[1].nombre;
-        precio_elegido.value = arrayProductos[1].precio;
+        $("#producto_seleccionado").val(arrayProductos[1].nombre);
+        $("#precio_seleccionado").val(arrayProductos[1].precio);
     } else if (producto == "prodNombre3") {
-        producto_elegido.value = arrayProductos[2].nombre;
-        precio_elegido.value = arrayProductos[2].precio;
+        $("#producto_seleccionado").val(arrayProductos[2].nombre);
+        $("#precio_seleccionado").val(arrayProductos[2].precio);
     } else if (producto == "prodNombre4") {
-        producto_elegido.value = arrayProductos[3].nombre;
-        precio_elegido.value = arrayProductos[3].precio;
+        $("#producto_seleccionado").val(arrayProductos[3].nombre);
+        $("#precio_seleccionado").val(arrayProductos[3].precio);
     }
 }
 
@@ -78,25 +75,25 @@ var consultas = [];
 
 function enviarConsulta() {
     // Se levantan los valores de la consulta
-    var producto_elegido = document.getElementById("producto_seleccionado").value;
-    var precio_elegido = document.getElementById("precio_seleccionado").value;
-    var nombre = document.getElementById("nombre_cliente").value;
-    var email = document.getElementById("email_cliente").value;
+    var producto_elegido = $("#producto_seleccionado").val();
+    var precio_elegido = $("#precio_seleccionado").val();
+    var nombre = $("#nombre_cliente").val();
+    var email = $("#email_cliente").val();
     // Se comprueba que los campos estén completos
     if (producto_elegido == "") {
-        document.getElementById("respuesta").innerHTML = "<p class= 'bg-danger p-3 m-3 fs-5'> ¡Hey, no elegiste ningún producto!</p>";
+        $("#respuesta").html("<p class= 'bg-danger p-3 m-3 fs-5'> ¡Hey, no elegiste ningún producto!</p>");
         return false;
     }
     if ((precio_elegido == "") || (parseFloat(precio_elegido) <= 100)) {
-        document.getElementById("respuesta").innerHTML = "<p class= 'bg-danger p-3 m-3 fs-5'> ¡Hey, ese no es el precio correcto!</p>";
+        $("#respuesta").html("<p class= 'bg-danger p-3 m-3 fs-5'> ¡Hey, ese no es el precio correcto!</p>)");
         return false;
     }
     if ((nombre == "") || (nombre.length < 3)) {
-        document.getElementById("respuesta").innerHTML = "<p class= 'bg-danger p-3 m-3 fs-5'> ¡Hey, por favor ingresa tu nombre!</p>";
+        $("#respuesta").html("<p class= 'bg-danger p-3 m-3 fs-5'> ¡Hey, por favor ingresa tu nombre!</p>");
         return false;
     }
     if ((email == "") || (!email.includes("@"))) {
-        document.getElementById("respuesta").innerHTML = "<p class= 'bg-danger p-3 m-3 fs-5'> ¡Hey, por favor ingresa tu mail!</p>";
+        $("#respuesta").html("<p class= 'bg-danger p-3 m-3 fs-5'> ¡Hey, por favor ingresa tu mail!</p>"); 
         return false;
     }
 
@@ -107,38 +104,44 @@ function enviarConsulta() {
     console.log(consultas)
     localStorage.setItem("datos_formulario", JSON.stringify(consultas));
     var respuesta = "<p class= 'text-white bg-success p-3 m-3'> Recibimos tu consulta! ;)</p>"
-    document.getElementById("respuesta").innerHTML = respuesta;
+    $("#respuesta").html(respuesta);
 }
 
-var enviar_datos = document.getElementById("enviar_datos");
-enviar_datos.addEventListener("click", enviarConsulta);
+$("#enviar_datos").click(function () {
+    enviarConsulta();
+});
+
 
 // Se carga la info de la última consulta
 function cargarInfo() {
     var datos = JSON.parse(localStorage.getItem("datos_formulario"));
     var ultConsul = datos.at(-1);
     console.log(ultConsul);
-    document.getElementById("producto_seleccionado").value = ultConsul.prodElegido;
-    document.getElementById("precio_seleccionado").value = ultConsul.precioElegido;
-    document.getElementById("nombre_cliente").value = ultConsul.nombre;
-    document.getElementById("email_cliente").value = ultConsul.email;
-    document.getElementById("respuesta").innerHTML = "<p class= 'bg-info p-3 m-3 fs-5'> ¡Se cargó la última consulta!</p>";
+    $("#producto_seleccionado").val(ultConsul.prodElegido);
+    $("#precio_seleccionado").val(ultConsul.precioElegido);
+    $("#nombre_cliente").val(ultConsul.nombre);
+    $("#email_cliente").val(ultConsul.email);
+    $("#respuesta").html("<p class= 'bg-info p-3 m-3 fs-5'> ¡Se cargó la última consulta!</p>");
 }
 
-var cargar_datos = document.getElementById("cargar_datos");
-cargar_datos.addEventListener("click", cargarInfo);
+$("#cargar_datos").click(function () {
+    cargarInfo();
+});
+
 
 function borrarDatos() {
-    document.getElementById("producto_seleccionado").value = " ";
-    document.getElementById("precio_seleccionado").value = " ";
-    document.getElementById("nombre_cliente").value = " ";
-    document.getElementById("email_cliente").value = " ";
+    $("#producto_seleccionado").val(" ");
+    $("#precio_seleccionado").val(" ");
+    $("#nombre_cliente").val(" ");
+    $("#email_cliente").val(" ");
     localStorage.clear();
-    document.getElementById("respuesta").innerHTML = "<p class= 'bg-warning p-3 m-3 fs-5'> ¡Se borraron todos los datos!</p>";
+    $("#respuesta").html("<p class= 'bg-warning p-3 m-3 fs-5'> ¡Se borraron todos los datos!</p>");
 }
 
-var borrar_datos = document.getElementById("borrar_datos");
-borrar_datos.addEventListener("click", borrarDatos);
+$("#borrar_datos").click(function() {
+    borrarDatos();
+});
+
 
 for (let i = 0; i < localStorage.length; i++) {
     let clave = localStorage.key(i);
