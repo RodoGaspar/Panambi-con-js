@@ -36,10 +36,13 @@ for (let producto of arrayProductos) {
     tarjetas += "<h3 id='prodNombre"+ i +"' class= 'card-title productos__subtitl--card'>Maceta " + producto.nombre + "</h3>";
     tarjetas += "<col><p class='card-text productos__descrip--card'>" + producto.descripcion +"</p></col>";
     tarjetas += "<col class= 'text-end'><strong id='prodPrecio"+ i +"' class='productos__descrip--card'>Precio: $" + producto.precio + "</strong></col>";
+    tarjetas += '<select id="selector'+ producto.id +'" class="form-select w-100" aria-label="Default select example"> <option selected>Open this select menu</option><option value="1">Uno</option><option value="2">Dos</option><option value="3">Tres</option><option value="4">Cuatro</option><option value="5">Cinco</option><option value="6">Seis</option><option value="7">Siete</option><option value="8">Ocho</option><option value="9">Nueve</option><option value="10">Diez</option></select>'
+    tarjetas += "<button id= 'boton"+ producto.id +"' type='button' class='btn btn-success m-3'>Agregar al pedido</button>";
     tarjetas += "</div>";
     tarjetas += "</div>";
     i++;
 }
+
 
 $("#muestraMacetas").append(tarjetas);
 
@@ -60,6 +63,45 @@ function infoProd(producto) {
         $("#precio_seleccionado").val(arrayProductos[3].precio);
     }
 }
+
+
+// onclick =asignarCantidad()
+$(()=> {
+    function asignarCantidadS() {
+        let cantidadS = $("#selector1").val();
+        console.log("la cantidad es " + cantidadS);
+        // console.log(typeof + cantidadS)
+    };
+    $("#boton1").click(function() {
+        asignarCantidadS()
+        console.log("Es boton1")
+    });
+    function asignarCantidadM() {
+        let cantidadM = $("#selector2").val();
+        console.log("la cantidad es " + cantidadM);
+    };
+    $("#boton2").click(function() {
+        asignarCantidadM()
+        console.log("Es boton2")
+    });
+    function asignarCantidadL() {
+        let cantidadL = $("#selector3").val();
+        console.log("la cantidad es " + cantidadL);
+    };
+    $("#boton3").click(function() {
+        asignarCantidadL()
+        console.log("Es boton3")
+    });
+    function asignarCantidadXL() {
+        let cantidadXL = $("#selector4").val();
+        console.log("la cantidad es " + cantidadXL);
+    };
+    $("#boton4").click(function() {
+        asignarCantidadXL()
+        console.log("Es boton4")
+    });
+    });
+    
 
 // Class para armar consulta
 class consulta {
