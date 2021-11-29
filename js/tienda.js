@@ -1,12 +1,14 @@
 //Class para armar productos
 class producto {
-    constructor(id, nombre, imagen, descripcion, precio) {
+    constructor(id, nombre, imagen, descripcion, precio, cantidad, precioTotal) {
         this.id = id;
         this.nombre = nombre;
         this.imagen = imagen;
+        this.cantidad = cantidad;
         this.descripcion = descripcion;
         this.precio = parseFloat(precio);
         this.vendido = false;
+        this.precioTotal = precioTotal
     };
     sumarIva() {
         this.precio = this.precio * 1.21;
@@ -14,6 +16,9 @@ class producto {
     vender() {
         this.vendido = true;
     };
+    asignarCantidad() {
+        this.precioTotal = this.precio * this.cantidad;
+    }
 };
 
 //Productos definidos y sumados a un array
@@ -70,37 +75,49 @@ $(()=> {
     function asignarCantidadS() {
         let cantidadS = $("#selector1").val();
         console.log("la cantidad es " + cantidadS);
+        producto1.cantidad = cantidadS;
         // console.log(typeof + cantidadS)
+        console.log(producto1);
     };
     $("#boton1").click(function() {
-        asignarCantidadS()
-        console.log("Es boton1")
+        asignarCantidadS();
+        producto1.asignarCantidad();
+        console.log("Es boton1");
     });
     function asignarCantidadM() {
         let cantidadM = $("#selector2").val();
         console.log("la cantidad es " + cantidadM);
+        producto2.cantidad = cantidadM;
+        console.log(producto2);
     };
     $("#boton2").click(function() {
-        asignarCantidadM()
-        console.log("Es boton2")
+        asignarCantidadM();
+        asignarCantidad();
+        console.log("Es boton2");
     });
     function asignarCantidadL() {
         let cantidadL = $("#selector3").val();
         console.log("la cantidad es " + cantidadL);
+        producto3.cantidad = cantidadL;
+        console.log(producto3);
     };
     $("#boton3").click(function() {
-        asignarCantidadL()
-        console.log("Es boton3")
+        asignarCantidadL();
+        asignarCantidad();
+        console.log("Es boton3");
     });
     function asignarCantidadXL() {
         let cantidadXL = $("#selector4").val();
         console.log("la cantidad es " + cantidadXL);
+        producto4.cantidad = cantidadXL;
+        console.log(producto4);
     };
     $("#boton4").click(function() {
-        asignarCantidadXL()
-        console.log("Es boton4")
+        asignarCantidadXL();
+        asignarCantidad();
+        console.log("Es boton4");
     });
-    });
+});
     
 
 // Class para armar consulta
@@ -109,7 +126,7 @@ class consulta {
         this.nombre = nombre;
         this.email = email;
         this.prodElegido = prodElegido;
-        this.precioElegido = precioElegido;
+        this.precioElegido = precioElegido; 
     }
 }
 // Array de Consultas
