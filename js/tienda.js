@@ -83,6 +83,7 @@ $(()=> {
         asignarCantidadS();
         producto1.asignarCantidad();
         console.log("Es boton1");
+        $("#carritoS").html(`<h3> Estás llevando ${producto1.cantidad} macetas ${producto1.nombre}</h3> <col> Con un precio total de $${producto1.precioTotal}`);
     });
     function asignarCantidadM() {
         let cantidadM = $("#selector2").val();
@@ -92,8 +93,9 @@ $(()=> {
     };
     $("#boton2").click(function() {
         asignarCantidadM();
-        asignarCantidad();
+        producto2.asignarCantidad();
         console.log("Es boton2");
+        $("#carritoM").html(`<h3> Estás llevando ${producto2.cantidad} macetas ${producto2.nombre}</h3> <col> Con un precio total de $${producto2.precioTotal}`);
     });
     function asignarCantidadL() {
         let cantidadL = $("#selector3").val();
@@ -103,8 +105,9 @@ $(()=> {
     };
     $("#boton3").click(function() {
         asignarCantidadL();
-        asignarCantidad();
+        producto3.asignarCantidad();
         console.log("Es boton3");
+        $("#carritoL").html(`<h3> Estás llevando ${producto3.cantidad} macetas ${producto3.nombre}</h3> <col> Con un precio total de $${producto3.precioTotal}`);
     });
     function asignarCantidadXL() {
         let cantidadXL = $("#selector4").val();
@@ -114,10 +117,27 @@ $(()=> {
     };
     $("#boton4").click(function() {
         asignarCantidadXL();
-        asignarCantidad();
+        producto4.asignarCantidad();
         console.log("Es boton4");
+        $("#carritoXL").html(`<h3> Estás llevando ${producto4.cantidad} macetas ${producto4.nombre}</h3> <col> Con un precio total de $${producto4.precioTotal}`);
     });
 });
+/* $("carrito").html();
+
+var pedido = "";
+
+function printOrder () {
+    for ( let producto of arrayProductos)
+    pedido += '<div class="card" style="width: 18rem;">';
+    pedido += '<div class="card-body">';
+    pedido += '<h5 class="card-title">Elegiste</h5>';
+    pedido += '<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>';
+    pedido += '<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>';
+    pedido += '<a href="#" class="card-link">Card link</a>';
+    pedido += '<a href="#" class="card-link">Another link</a>';
+    pedido += '</div>';
+    pedido += '</div>';
+}; */
     
 
 // Class para armar consulta
