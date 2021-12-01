@@ -70,7 +70,7 @@ function infoProd(producto) {
 }
 
 
-// onclick =asignarCantidad()
+// Acá es donde se asignan las cantidades de los productos elegídos, sospecho que se puede hacer más corto.
 $(()=> {
     function asignarCantidadS() {
         let cantidadS = $("#selector1").val();
@@ -83,7 +83,7 @@ $(()=> {
         asignarCantidadS();
         producto1.asignarCantidad();
         console.log("Es boton1");
-        $("#carritoS").html(`<h3> Estás llevando ${producto1.cantidad} macetas ${producto1.nombre}</h3> <col> Con un precio total de $${producto1.precioTotal}`);
+        $("#carritoS").html(`<h3> Estás llevando ${producto1.cantidad} macetas ${producto1.nombre}</h3> <col> Con un precio total de $${producto1.precioTotal}`).css("backgroundColor", "#3e8f13").fadeIn(3000).slideUp(2000).slideDown(2000);
     });
     function asignarCantidadM() {
         let cantidadM = $("#selector2").val();
@@ -95,7 +95,7 @@ $(()=> {
         asignarCantidadM();
         producto2.asignarCantidad();
         console.log("Es boton2");
-        $("#carritoM").html(`<h3> Estás llevando ${producto2.cantidad} macetas ${producto2.nombre}</h3> <col> Con un precio total de $${producto2.precioTotal}`);
+        $("#carritoM").html(`<h3> Estás llevando ${producto2.cantidad} macetas ${producto2.nombre}</h3> <col> Con un precio total de $${producto2.precioTotal}`).css("backgroundColor", "#3e8f13").fadeIn(3000).slideUp(2000).slideDown(2000);;
     });
     function asignarCantidadL() {
         let cantidadL = $("#selector3").val();
@@ -107,7 +107,7 @@ $(()=> {
         asignarCantidadL();
         producto3.asignarCantidad();
         console.log("Es boton3");
-        $("#carritoL").html(`<h3> Estás llevando ${producto3.cantidad} macetas ${producto3.nombre}</h3> <col> Con un precio total de $${producto3.precioTotal}`);
+        $("#carritoL").html(`<h3> Estás llevando ${producto3.cantidad} macetas ${producto3.nombre}</h3> <col> Con un precio total de $${producto3.precioTotal}`).css("backgroundColor", "#3e8f13").fadeIn(3000).slideUp(2000).slideDown(2000);;
     });
     function asignarCantidadXL() {
         let cantidadXL = $("#selector4").val();
@@ -119,10 +119,11 @@ $(()=> {
         asignarCantidadXL();
         producto4.asignarCantidad();
         console.log("Es boton4");
-        $("#carritoXL").html(`<h3> Estás llevando ${producto4.cantidad} macetas ${producto4.nombre}</h3> <col> Con un precio total de $${producto4.precioTotal}`);
+        $("#carritoXL").html(`<h3> Estás llevando ${producto4.cantidad} macetas ${producto4.nombre}</h3> <col> Con un precio total de $${producto4.precioTotal}`).css("backgroundColor", "#3e8f13").slideUp(2000).slideDown(2000);;
     });
 });
-/* $("carrito").html();
+/*Aca intentaba hacer lo de arriba más corto pero me trabé :( 
+$("carrito").html();
 
 var pedido = "";
 
@@ -141,32 +142,25 @@ function printOrder () {
     
 
 // Class para armar consulta
-class consulta {
+/* class consulta {
     constructor (nombre, email, prodElegido, precioElegido) {
         this.nombre = nombre;
         this.email = email;
         this.prodElegido = prodElegido;
         this.precioElegido = precioElegido; 
     }
-}
+} */
 // Array de Consultas
 var consultas = [];
 
 function enviarConsulta() {
     // Se levantan los valores de la consulta
-    var producto_elegido = $("#producto_seleccionado").val();
-    var precio_elegido = $("#precio_seleccionado").val();
     var nombre = $("#nombre_cliente").val();
     var email = $("#email_cliente").val();
+    var pedido = [];
+    pedido.push("producto1.cantidad ,producto1.nombre, producto2.cantidad, producto2.nombre, producto3.cantidad, producto3.nombre, producto4.cantidad, producto4.nombre");
+    console.log(pedido);
     // Se comprueba que los campos estén completos
-    if (producto_elegido == "") {
-        $("#respuesta").html("<p class= 'bg-danger p-3 m-3 fs-5'> ¡Hey, no elegiste ningún producto!</p>");
-        return false;
-    }
-    if ((precio_elegido == "") || (parseFloat(precio_elegido) <= 100)) {
-        $("#respuesta").html("<p class= 'bg-danger p-3 m-3 fs-5'> ¡Hey, ese no es el precio correcto!</p>)");
-        return false;
-    }
     if ((nombre == "") || (nombre.length < 3)) {
         $("#respuesta").html("<p class= 'bg-danger p-3 m-3 fs-5'> ¡Hey, por favor ingresa tu nombre!</p>");
         return false;
