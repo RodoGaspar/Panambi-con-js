@@ -53,93 +53,50 @@ for (let producto of arrayProductos) {
 $("#muestraMacetas").append(tarjetas);
 
 
-function infoProd(producto) {
-    console.log( "es" + producto)
-    if (producto == "prodNombre1") {
-        $("#producto_seleccionado").val(arrayProductos[0].nombre);
-        $("#precio_seleccionado").val(arrayProductos[0].precio);
-    } else if (producto == "prodNombre2") {
-        $("#producto_seleccionado").val(arrayProductos[1].nombre);
-        $("#precio_seleccionado").val(arrayProductos[1].precio);
-    } else if (producto == "prodNombre3") {
-        $("#producto_seleccionado").val(arrayProductos[2].nombre);
-        $("#precio_seleccionado").val(arrayProductos[2].precio);
-    } else if (producto == "prodNombre4") {
-        $("#producto_seleccionado").val(arrayProductos[3].nombre);
-        $("#precio_seleccionado").val(arrayProductos[3].precio);
-    }
-}
+
 
 
 // Acá es donde se asignan las cantidades de los productos elegídos, sospecho que se puede hacer más corto.
-function asignarCantidad(boton) {
-    if (boton == "boton1") {
-        cantidad = $("#selector1").val();
-        producto1.cantidad = cantidad;
-        console.log(producto1);
-        producto1.precioCantidad();
-        $("#carritoS").slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${producto1.cantidad} macetas ${producto1.nombre}</h3> <col> Con un precio total de $${producto1.precioTotal}`).css("backgroundColor", "#3e8f13");
 
-    } else if (boton == "boton2") {
-        cantidad = $("#selector2").val();
-        producto2.cantidad = cantidad;
-        console.log(producto2);
-        producto2.precioCantidad();
-        $("#carritoM").slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${producto2.cantidad} macetas ${producto2.nombre}</h3> <col> Con un precio total de $${producto2.precioTotal}`).css("backgroundColor", "#3e8f13");
+function asignarCantidad(selector, producto, kart) {
+    cantidad = selector.val();
+    producto.cantidad = cantidad;
+    console.log(producto);
+    producto.precioCantidad();
+    (kart).slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${producto.cantidad} macetas ${producto.nombre}</h3> <col> <p> Con un precio total de $${producto.precioTotal}</p>`).css("backgroundColor", "#3e8f13", "fontSize", "3rem");
+};
 
-    } else if (boton == "boton3") {
-        cantidad = $("#selector3").val();
-        producto3.cantidad = cantidad;
-        console.log(producto3);
-        producto3.precioCantidad();
-        $("#carritoL").slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${producto3.cantidad} macetas ${producto3.nombre}</h3> <col> Con un precio total de $${producto3.precioTotal}`).css("backgroundColor", "#3e8f13");
+$("#boton1").click(function(){
+    asignarCantidad($("#selector1"), producto1, $("#carrito1"))
+});
+$("#boton2").click(function(){
+    asignarCantidad($("#selector2"), producto2, $("#carrito2"))
+})
+$("#boton3").click(function(){
+    asignarCantidad($("#selector3"), producto3, $("#carrito3"))
+})
+$("#boton4").click(function(){
+    asignarCantidad($("#selector4"), producto4, $("#carrito4"))
+})
 
-    } else if (boton == "boton4") {
-        cantidad = $("#selector4").val();
-        producto4.cantidad = cantidad;
-        console.log(producto4);
-        producto4.precioCantidad();
-        $("#carritoXL").slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${producto4.cantidad} macetas ${producto4.nombre}</h3> <col> Con un precio total de $${producto4.precioTotal}`).css("backgroundColor", "#3e8f13");
-    }
-
-}
+// Intentos de armar un for of con los botones pero me quedé sin tiempo :(
 
 /* for ( i = 0; i < 5; i++){
 $(".botoncito").click(function(){
     asignarCantidad("boton"+i)
 })
 } */
+
 /* var arrButt = $(".botoncito");
 console.log(arrButt);
 i=1
 for (butt of arrButt) {
     butt.click(function() {
-        asignarCantidad();
+        asignarCantidad("selector" + i, producto + i, "carrrito" + i);
     })
     i++
-}
+} 
  */
-/* for ( i = 0; i < 5; i++) {
-    $(("#boton")+i).click(function() {
-        asignarCantidad("boton" + i);
-    })
-} */
-
-$("#boton1").click(function(){
-    asignarCantidad("boton1")
-});
-$("#boton2").click(function(){
-    asignarCantidad("boton2")
-});
-$("#boton3").click(function(){
-    asignarCantidad("boton3")
-});
-$("#boton4").click(function(){
-    asignarCantidad("boton4")
-});
-
-
-    
 
 // Class para armar consulta
 class consulta {
@@ -151,13 +108,13 @@ class consulta {
 }
 // Array de Consultas
 var consultas = [];
+pedido = [];
 
 function enviarConsulta() {
     // Se levantan los valores de la consulta
     var nombre = $("#nombre_cliente").val();
-    var email = $("#email_cliente").val();
-    var pedido = [];
-    consultas.push(nombre, email, producto1.cantidad ,producto1.nombre, producto2.cantidad, producto2.nombre, producto3.cantidad, producto3.nombre, producto4.cantidad, producto4.nombre);
+    var email = $("#email_cliente").val();    
+    pedido.push(producto1.cantidad ,producto1.nombre, producto2.cantidad, producto2.nombre, producto3.cantidad, producto3.nombre, producto4.cantidad, producto4.nombre);
     console.log(pedido);
     // Se comprueba que los campos estén completos
     if ((nombre == "") || (nombre.length < 3)) {
@@ -170,9 +127,9 @@ function enviarConsulta() {
     }
 
     // Se crea un objeto con los datos de la consulta, se pushea a un array y se guarda en local storage
-    /* const nuconsulta = new consulta (nombre, email, producto_elegido, precio_elegido);
+    const nuconsulta = new consulta (nombre, email, pedido);
     console.log(nuconsulta);
-    consultas.push(nuconsulta); */
+    consultas.push(nuconsulta);
     console.log(consultas)
     localStorage.setItem("datos_formulario", JSON.stringify(consultas));
     var respuesta = "<p class= 'text-white bg-success p-3 m-3'> Recibimos tu consulta! ;)</p>"
@@ -189,10 +146,9 @@ function cargarInfo() {
     var datos = JSON.parse(localStorage.getItem("datos_formulario"));
     var ultConsul = datos.at(-1);
     console.log(ultConsul);
-    $("#producto_seleccionado").val(ultConsul.prodElegido);
-    $("#precio_seleccionado").val(ultConsul.precioElegido);
     $("#nombre_cliente").val(ultConsul.nombre);
     $("#email_cliente").val(ultConsul.email);
+    // Falta recuperar el pedido
     $("#respuesta").html("<p class= 'bg-info p-3 m-3 fs-5'> ¡Se cargó la última consulta!</p>");
 }
 
@@ -202,8 +158,6 @@ $("#cargar_datos").click(function () {
 
 
 function borrarDatos() {
-    $("#producto_seleccionado").val(" ");
-    $("#precio_seleccionado").val(" ");
     $("#nombre_cliente").val(" ");
     $("#email_cliente").val(" ");
     localStorage.clear();
