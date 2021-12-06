@@ -16,7 +16,7 @@ class producto {
     vender() {
         this.vendido = true;
     };
-    asignarCantidad() {
+    precioCantidad() {
         this.precioTotal = this.precio * this.cantidad;
     }
 };
@@ -42,10 +42,11 @@ for (let producto of arrayProductos) {
     tarjetas += "<col><p class='card-text productos__descrip--card'>" + producto.descripcion +"</p></col>";
     tarjetas += "<col class= 'text-end'><strong id='prodPrecio"+ i +"' class='productos__descrip--card'>Precio: $" + producto.precio + "</strong></col>";
     tarjetas += '<select id="selector'+ producto.id +'" class="form-select w-100" aria-label="Default select example"> <option selected>Open this select menu</option><option value="1">Uno</option><option value="2">Dos</option><option value="3">Tres</option><option value="4">Cuatro</option><option value="5">Cinco</option><option value="6">Seis</option><option value="7">Siete</option><option value="8">Ocho</option><option value="9">Nueve</option><option value="10">Diez</option></select>'
-    tarjetas += "<button id= 'boton"+ producto.id +"' type='button' class='btn btn-success m-3'>Agregar al pedido</button>";
+    tarjetas += "<button id= 'boton"+ producto.id +"' type='button' class='btn btn-success m-3 botoncito' >Agregar al pedido</button>";
     tarjetas += "</div>";
     tarjetas += "</div>";
     i++;
+
 }
 
 
@@ -71,7 +72,54 @@ function infoProd(producto) {
 
 
 // Acá es donde se asignan las cantidades de los productos elegídos, sospecho que se puede hacer más corto.
-$(()=> {
+function asignarCantidad(boton) {
+    if (boton == "boton1") {
+        cantidad = $("#selector1").val();
+        producto1.cantidad = cantidad;
+        console.log(producto1);
+        producto1.precioCantidad();
+        $("#carritoS").slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${producto1.cantidad} macetas ${producto1.nombre}</h3> <col> Con un precio total de $${producto1.precioTotal}`).css("backgroundColor", "#3e8f13");
+
+    } else if (boton == "boton2") {
+        cantidad = $("#selector2").val();
+        producto2.cantidad = cantidad;
+        console.log(producto2);
+        producto2.precioCantidad();
+        $("#carritoM").slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${producto2.cantidad} macetas ${producto2.nombre}</h3> <col> Con un precio total de $${producto2.precioTotal}`).css("backgroundColor", "#3e8f13");
+
+    } else if (boton == "boton3") {
+        cantidad = $("#selector3").val();
+        producto3.cantidad = cantidad;
+        console.log(producto3);
+        producto3.precioCantidad();
+        $("#carritoL").slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${producto3.cantidad} macetas ${producto3.nombre}</h3> <col> Con un precio total de $${producto3.precioTotal}`).css("backgroundColor", "#3e8f13");
+
+    } else if (boton == "boton4") {
+        cantidad = $("#selector4").val();
+        producto4.cantidad = cantidad;
+        console.log(producto4);
+        producto4.precioCantidad();
+        $("#carritoXL").slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${producto4.cantidad} macetas ${producto4.nombre}</h3> <col> Con un precio total de $${producto4.precioTotal}`).css("backgroundColor", "#3e8f13");
+    }
+
+}
+
+
+$("#boton1").click(function(){
+    asignarCantidad("boton1")
+});
+$("#boton2").click(function(){
+    asignarCantidad("boton2")
+});
+$("#boton3").click(function(){
+    asignarCantidad("boton3")
+});
+$("#boton4").click(function(){
+    asignarCantidad("boton4")
+});
+
+//Metodo Largo
+/* $(()=> {
     function asignarCantidadS() {
         let cantidadS = $("#selector1").val();
         console.log("la cantidad es " + cantidadS);
@@ -81,7 +129,7 @@ $(()=> {
     };
     $("#boton1").click(function() {
         asignarCantidadS();
-        producto1.asignarCantidad();
+        producto1.precioCantidad();
         console.log("Es boton1");
         $("#carritoS").html(`<h3> Estás llevando ${producto1.cantidad} macetas ${producto1.nombre}</h3> <col> Con un precio total de $${producto1.precioTotal}`).css("backgroundColor", "#3e8f13").fadeIn(3000).slideUp(2000).slideDown(2000);
     });
@@ -121,24 +169,7 @@ $(()=> {
         console.log("Es boton4");
         $("#carritoXL").html(`<h3> Estás llevando ${producto4.cantidad} macetas ${producto4.nombre}</h3> <col> Con un precio total de $${producto4.precioTotal}`).css("backgroundColor", "#3e8f13").slideUp(2000).slideDown(2000);;
     });
-});
-/*Aca intentaba hacer lo de arriba más corto pero me trabé :( 
-$("carrito").html();
-
-var pedido = "";
-
-function printOrder () {
-    for ( let producto of arrayProductos)
-    pedido += '<div class="card" style="width: 18rem;">';
-    pedido += '<div class="card-body">';
-    pedido += '<h5 class="card-title">Elegiste</h5>';
-    pedido += '<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>';
-    pedido += '<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>';
-    pedido += '<a href="#" class="card-link">Card link</a>';
-    pedido += '<a href="#" class="card-link">Another link</a>';
-    pedido += '</div>';
-    pedido += '</div>';
-}; */
+}); */
     
 
 // Class para armar consulta
