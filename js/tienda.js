@@ -104,6 +104,26 @@ function asignarCantidad(boton) {
 
 }
 
+/* for ( i = 0; i < 5; i++){
+$(".botoncito").click(function(){
+    asignarCantidad("boton"+i)
+})
+} */
+/* var arrButt = $(".botoncito");
+console.log(arrButt);
+i=1
+for (butt of arrButt) {
+    butt.click(function() {
+        asignarCantidad();
+    })
+    i++
+}
+ */
+/* for ( i = 0; i < 5; i++) {
+    $(("#boton")+i).click(function() {
+        asignarCantidad("boton" + i);
+    })
+} */
 
 $("#boton1").click(function(){
     asignarCantidad("boton1")
@@ -118,69 +138,17 @@ $("#boton4").click(function(){
     asignarCantidad("boton4")
 });
 
-//Metodo Largo
-/* $(()=> {
-    function asignarCantidadS() {
-        let cantidadS = $("#selector1").val();
-        console.log("la cantidad es " + cantidadS);
-        producto1.cantidad = cantidadS;
-        // console.log(typeof + cantidadS)
-        console.log(producto1);
-    };
-    $("#boton1").click(function() {
-        asignarCantidadS();
-        producto1.precioCantidad();
-        console.log("Es boton1");
-        $("#carritoS").html(`<h3> Estás llevando ${producto1.cantidad} macetas ${producto1.nombre}</h3> <col> Con un precio total de $${producto1.precioTotal}`).css("backgroundColor", "#3e8f13").fadeIn(3000).slideUp(2000).slideDown(2000);
-    });
-    function asignarCantidadM() {
-        let cantidadM = $("#selector2").val();
-        console.log("la cantidad es " + cantidadM);
-        producto2.cantidad = cantidadM;
-        console.log(producto2);
-    };
-    $("#boton2").click(function() {
-        asignarCantidadM();
-        producto2.asignarCantidad();
-        console.log("Es boton2");
-        $("#carritoM").html(`<h3> Estás llevando ${producto2.cantidad} macetas ${producto2.nombre}</h3> <col> Con un precio total de $${producto2.precioTotal}`).css("backgroundColor", "#3e8f13").fadeIn(3000).slideUp(2000).slideDown(2000);;
-    });
-    function asignarCantidadL() {
-        let cantidadL = $("#selector3").val();
-        console.log("la cantidad es " + cantidadL);
-        producto3.cantidad = cantidadL;
-        console.log(producto3);
-    };
-    $("#boton3").click(function() {
-        asignarCantidadL();
-        producto3.asignarCantidad();
-        console.log("Es boton3");
-        $("#carritoL").html(`<h3> Estás llevando ${producto3.cantidad} macetas ${producto3.nombre}</h3> <col> Con un precio total de $${producto3.precioTotal}`).css("backgroundColor", "#3e8f13").fadeIn(3000).slideUp(2000).slideDown(2000);;
-    });
-    function asignarCantidadXL() {
-        let cantidadXL = $("#selector4").val();
-        console.log("la cantidad es " + cantidadXL);
-        producto4.cantidad = cantidadXL;
-        console.log(producto4);
-    };
-    $("#boton4").click(function() {
-        asignarCantidadXL();
-        producto4.asignarCantidad();
-        console.log("Es boton4");
-        $("#carritoXL").html(`<h3> Estás llevando ${producto4.cantidad} macetas ${producto4.nombre}</h3> <col> Con un precio total de $${producto4.precioTotal}`).css("backgroundColor", "#3e8f13").slideUp(2000).slideDown(2000);;
-    });
-}); */
+
     
 
 // Class para armar consulta
-/* class consulta {
-    constructor (nombre, email, prodElegido, precioElegido) {
+class consulta {
+    constructor (nombre, email, pedido) {
         this.nombre = nombre;
         this.email = email;
-        this.prodElegido = prodElegido;
-        this.precioElegido = precioElegido; 
+        this.pedido = pedido;
     }
-} */
+}
 // Array de Consultas
 var consultas = [];
 
@@ -189,7 +157,7 @@ function enviarConsulta() {
     var nombre = $("#nombre_cliente").val();
     var email = $("#email_cliente").val();
     var pedido = [];
-    pedido.push("producto1.cantidad ,producto1.nombre, producto2.cantidad, producto2.nombre, producto3.cantidad, producto3.nombre, producto4.cantidad, producto4.nombre");
+    consultas.push(nombre, email, producto1.cantidad ,producto1.nombre, producto2.cantidad, producto2.nombre, producto3.cantidad, producto3.nombre, producto4.cantidad, producto4.nombre);
     console.log(pedido);
     // Se comprueba que los campos estén completos
     if ((nombre == "") || (nombre.length < 3)) {
@@ -202,9 +170,9 @@ function enviarConsulta() {
     }
 
     // Se crea un objeto con los datos de la consulta, se pushea a un array y se guarda en local storage
-    const nuconsulta = new consulta (nombre, email, producto_elegido, precio_elegido);
+    /* const nuconsulta = new consulta (nombre, email, producto_elegido, precio_elegido);
     console.log(nuconsulta);
-    consultas.push(nuconsulta);
+    consultas.push(nuconsulta); */
     console.log(consultas)
     localStorage.setItem("datos_formulario", JSON.stringify(consultas));
     var respuesta = "<p class= 'text-white bg-success p-3 m-3'> Recibimos tu consulta! ;)</p>"
