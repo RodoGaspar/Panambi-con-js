@@ -89,10 +89,10 @@ $(".botoncito").click(function(){
 
 /* var arrButt = $(".botoncito");
 console.log(arrButt);
-i=1
+i= 1
 for (butt of arrButt) {
     butt.click(function() {
-        asignarCantidad("selector" + i, producto + i, "carrrito" + i);
+        asignarCantidad(("selector" + i), producto + i, ("carrrito" + i));
     })
     i++
 } 

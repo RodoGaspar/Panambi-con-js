@@ -1,0 +1,34 @@
+[
+    {
+        "id":1,
+        "nombre":"S",
+        "imagen":"Lfante_Lobelia.jpg",
+        "descripcion":"Es nuestro formato mas pequeño, ideal para germinar, plantas chicas o plántulas.",
+        "precio":450,
+        "vendido":false
+    },
+    {
+        "id":2,
+        "nombre":"M",
+        "imagen":"MacetaN12Gatitos.jpg",
+        "descripcion":"Este tamaño se recomienda para plantas pequeñas a medianas pensando siempre en hacer un transplante en la siguiente estación o cuando la planta lo requiera.",
+        "precio":650,
+        "vendido":false
+    },
+    {
+        "id":3,
+        "nombre":"L",
+        "imagen":"soln14.jpg",
+        "descripcion":"Tamaño recomiendado para plantas medianas que se quieran mantener en ese tamaño, o bien en transición de medianas a grandes.",
+        "precio":800,
+        "vendido":false
+    },
+    {
+        "id":4,
+        "nombre":"XL",
+        "imagen":"zorro_boreal.jpg",
+        "descripcion":"Perfecta para plantas medianas o grandes en crecimiento, dependiendo del desarrollo de las mismas puede transplantarse a tamaños más grandes o pasarse a tierra.",
+        "precio":1000,
+        "vendido":false
+    }
+]
