@@ -55,12 +55,18 @@ $("#muestraMacetas").append(tarjetas);
 
 // Acá es donde se asignan las cantidades de los productos elegídos, sospecho que se puede hacer más corto.
 
+var precioFinal = 0;
+
 function asignarCantidad(selector, producto, kart) {
     cantidad = selector.val();
-    producto.cantidad = cantidad;
-    console.log(producto);
-    producto.precioCantidad();
-    (kart).slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${producto.cantidad} macetas ${producto.nombre}</h3> <col> <p> Con un precio total de $${producto.precioTotal}</p>`).css("backgroundColor", "#3e8f13").css ("fontSize", "2rem");
+    if (cantidad > 0) {
+        producto.cantidad = cantidad;
+        console.log(producto);
+        producto.precioCantidad();
+        (kart).slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${producto.cantidad} macetas ${producto.nombre}</h3> <col> <p> Con un precio total de $${producto.precioTotal}</p>`).css("backgroundColor", "#3e8f13").css ("fontSize", "2rem");
+        precioFinal += producto.precioTotal;
+        $("#carritoTotal").slideUp(2000).slideDown(2000).html(`<h4>El precio total de tu pedido es de $${precioFinal}`);  
+    }
 };
 
 $("#boton1").click(function(){
@@ -104,11 +110,6 @@ function enviarConsulta() {
         $("#respuesta").html("<p class= 'bg-danger p-3 m-3 fs-5'> ¡Hey, por favor ingresa tu mail!</p>"); 
         return false;
     }
-    if ((producto1.cantidad > 0) && (producto2.cantidad > 0) && (producto3.cantidad > 0) && (producto4.cantidad > 0)) {
-        var precioFinal = producto1.precioTotal + producto2.precioTotal + producto3.precioTotal + producto4.precioTotal;
-        console.log(precioFinal)
-        $("#carritoTotal").slideUp(2000).slideDown(2000).html(`<h4>El precio total de tu pedido es de $${precioFinal}`) 
-    }
 
     // Se crea un objeto con los datos de la consulta, se pushea a un array y se guarda en local storage
     const nuconsulta = new consulta (nombre, email, pedido, precioFinal);
@@ -134,12 +135,19 @@ function cargarInfo() {
     $("#nombre_cliente").val(ultConsul.nombre);
     $("#email_cliente").val(ultConsul.email);
     $("#respuesta").html("<p class= 'bg-info p-3 m-3 fs-5'> ¡Se cargó la última consulta!</p>");
-    $("#carrito1").slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${ultConsul.pedido[0]} macetas ${producto1.nombre}</h3> <col> <p> Con un precio total de $${ultConsul.pedido[2]}</p>`).css("backgroundColor", "#3e8f13").css ("fontSize", "2rem");
-    $("#carrito2").slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${ultConsul.pedido[3]} macetas ${producto2.nombre}</h3> <col> <p> Con un precio total de $${ultConsul.pedido[5]}</p>`).css("backgroundColor", "#3e8f13").css ("fontSize", "2rem");
-    $("#carrito3").slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${ultConsul.pedido[6]} macetas ${producto3.nombre}</h3> <col> <p> Con un precio total de $${ultConsul.pedido[8]}</p>`).css("backgroundColor", "#3e8f13").css ("fontSize", "2rem");
-    $("#carrito4").slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${ultConsul.pedido[9]} macetas ${producto4.nombre}</h3> <col> <p> Con un precio total de $${ultConsul.pedido[11]}</p>`).css("backgroundColor", "#3e8f13").css ("fontSize", "2rem");
+    if (ultConsul.pedido[0] > 0) {
+        $("#carrito1").slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${ultConsul.pedido[0]} macetas ${producto1.nombre}</h3> <col> <p> Con un precio total de $${ultConsul.pedido[2]}</p>`).css("backgroundColor", "#3e8f13").css ("fontSize", "2rem");
+    };
+    if (ultConsul.pedido[3] > 0) {
+        $("#carrito2").slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${ultConsul.pedido[3]} macetas ${producto2.nombre}</h3> <col> <p> Con un precio total de $${ultConsul.pedido[5]}</p>`).css("backgroundColor", "#3e8f13").css ("fontSize", "2rem");
+    };
+    if (ultConsul.pedido[6] > 0) {
+        $("#carrito3").slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${ultConsul.pedido[6]} macetas ${producto3.nombre}</h3> <col> <p> Con un precio total de $${ultConsul.pedido[8]}</p>`).css("backgroundColor", "#3e8f13").css ("fontSize", "2rem");
+    };
+    if (ultConsul.pedido[9] > 0) {
+        $("#carrito4").slideUp(2000).slideDown(2000).html(`<h3> Estás llevando ${ultConsul.pedido[9]} macetas ${producto4.nombre}</h3> <col> <p> Con un precio total de $${ultConsul.pedido[11]}</p>`).css("backgroundColor", "#3e8f13").css ("fontSize", "2rem");
     $("#carritoTotal").slideUp(2000).slideDown(2000).html(`<h4>El precio total de tu pedido es de $${ultConsul.precioFinal}`);
-    
+    };    
 }
 
 $("#cargar_datos").click(function () {
@@ -152,6 +160,11 @@ function borrarDatos() {
     $("#email_cliente").val(" ");
     localStorage.clear();
     $("#respuesta").html("<p class= 'bg-warning p-3 m-3 fs-5'> ¡Se borraron todos los datos!</p>");
+    $("#carrito1").slideUp(2000).slideDown(2000).html(` `);
+    $("#carrito2").slideUp(2000).slideDown(2000).html(` `);
+    $("#carrito3").slideUp(2000).slideDown(2000).html(` `);
+    $("#carrito4").slideUp(2000).slideDown(2000).html(` `);
+    $("#carritoTotal").slideUp(2000).slideDown(2000).html(` `);
 }
 
 $("#borrar_datos").click(function() {
